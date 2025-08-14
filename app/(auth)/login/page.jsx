@@ -1,12 +1,19 @@
+'use client'
+
 import { loginAction } from '@/actions/authActions';
+import SubmitForm from '@/components/partials/SubmitForm';
 import ToggleButton from '@/components/partials/ToggleButton';
-import React from 'react';
+import React, { useActionState } from 'react';
 
 const Login = () => {
+    const loginActionWithParams = loginAction.bind(null, 'param1', 'param2')
+    const [state, formAction, pending] = useActionState(loginAction, {error: '', success: false})
+
     return (
         <div className='flex justify-center items-center h-full w-full px-2 lg:px-10'>
-            <form action={loginAction} className='w-full text-gray-600 bg-[#a3cbe9] backdrop-blur-lg p-3 rounded-lg shadow mb-20'>
+            <form action={formAction} className='w-full text-gray-600 bg-[#a3cbe9] backdrop-blur-lg p-3 rounded-lg shadow mb-20'>
                 <h1 className='text-center my-5'>ورود</h1>
+                {state.error && (<h1 className='text-red-500 text-center my-5'>{state.error}</h1>)}
                 <div>
                     <label>شماره موبایل:</label>
                     <input name="phone" type='number' className='mt-2 px-4 w-full border-gray-300 border-2 rounded-full h-12 bg-[#367db4] focus:outline-blue-300 text-sky-50' />
@@ -19,9 +26,7 @@ const Login = () => {
                     <ToggleButton value={1} name="remember" title="مرا بخاطر بسپار" />
                 </div>
 
-                <div className='my-6 px-4'>
-                    <button className='rounded-full w-full bg-[#2874c1] h-12 text-white hover:bg-[#2f74ff] cursor-pointer transition-all'>ورود</button>
-                </div>
+                <SubmitForm />
             </form>
         </div>
     );

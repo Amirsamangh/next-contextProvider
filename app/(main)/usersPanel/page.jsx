@@ -10,7 +10,7 @@ const Posts = () => {
         <div className='flex flex-col justify-center items-center h-full'>
             <GrUserExpert className="size-20"/>
             <h1 className='my-5'>صفحه کاربر</h1>
-            <CustomButton className='bg-gray-500 hover:bg-gray-600 w-64 cursor-pointer' onClick={()=>router.push("/")}>خروج</CustomButton>
+            <CustomButton className='bg-red-500 hover:bg-red-800 text-red-100 w-64 cursor-pointer' onClick={()=>router.push("/")}>خروج</CustomButton>
         </div>
     );
 }
