@@ -1,6 +1,7 @@
 'use client'
 
 import { loginAction } from '@/actions/authActions';
+import AuthButton from '@/components/partials/AuthButton';
 import SubmitForm from '@/components/partials/SubmitForm';
 import ToggleButton from '@/components/partials/ToggleButton';
 import React, { useActionState } from 'react';
@@ -28,8 +29,13 @@ const Login = () => {
                 <div className='mt-5'>
                     <ToggleButton value={1} name="remember" title="مرا بخاطر بسپار" />
                 </div>
-
-                <SubmitForm />
+                
+                <div className='my-6 px-4'>
+                    <SubmitForm />
+                </div>
+                <div className='flex justify-center'>
+                    <AuthButton />
+                </div>
             </form>
         </div>
     );
