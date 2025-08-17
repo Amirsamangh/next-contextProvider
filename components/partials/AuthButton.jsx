@@ -1,26 +1,52 @@
-import axios from "axios"
-import { jwtDecode } from "jwt-decode"
-import GoogleLoginButton from "./GoogleLoginButton"
+// import axios from "axios"
+// import { jwtDecode } from "jwt-decode"
+// import GoogleLoginButton from "./GoogleLoginButton"
+import { signIn, signOut, useSession } from 'next-auth/react'
+import GithubLoginButton from './GithubLoginButton';
 
-const { GoogleLogin, useGoogleLogin } = require("@react-oauth/google")
-
+// const { GoogleLogin, useGoogleLogin } = require("@react-oauth/google")
 
 const AuthButton = () => {
-    const login = useGoogleLogin({
-        onSuccess: async (tokenResponse) => {
-            const res = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
-                headers: {
-                    Authorization: `Bearer ${tokenResponse.access_token}`
-                }
-            })
-            console.log(res);
+    const { data: session } = useSession()
 
-        }
-    })
     return (
-        <GoogleLoginButton onClick={()=> login()} />
-    );
+        <button
+            className='flex w-full items-center justify-center gap-3 rounded-3xl
+               bg-white px-4 py-2 mx-4 text-neutral-800
+               shadow-sm ring-1 ring-neutral-200 transition-all
+               hover:shadow-md hover:ring-neutral-300 cursor-pointer'
+               onClick={()=>signIn()}
+        >
+            sign in
+        </button>
+    )
+
+    // return session ? (
+    //     // <GithubLoginButton onclick={()=>signOut()} text={session.user.name} />
+    //     <GithubLoginButton onclick={()=>signOut()} text={session.user.name} />
+
+    // ) : (
+    //     <GithubLoginButton onclick={()=>signIn()} />
+    // )
 }
+
+
+// const AuthButton = () => {
+//     const login = useGoogleLogin({
+//         onSuccess: async (tokenResponse) => {
+//             const res = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+//                 headers: {
+//                     Authorization: `Bearer ${tokenResponse.access_token}`
+//                 }
+//             })
+//             console.log(res);
+
+//         }
+//     })
+//     return (
+//         <GoogleLoginButton onClick={() => login()} />
+//     );
+// }
 
 // const AuthButton = () => {
 

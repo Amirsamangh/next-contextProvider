@@ -1,12 +1,18 @@
 'use client'
 
-const { GoogleOAuthProvider } = require("@react-oauth/google")
+// import { GoogleOAuthProvider } from "@react-oauth/google"
+import { SessionProvider } from "next-auth/react"
 
 const AuthProvider = ({ children }) => {
     return (
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_Google_CLIENT_ID}>
+
+        <SessionProvider>
             {children}
-        </GoogleOAuthProvider>
+        </SessionProvider>
+
+        // <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_Google_CLIENT_ID}>
+        //     {children}
+        // </GoogleOAuthProvider>
     )
 }
 
