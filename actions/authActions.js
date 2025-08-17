@@ -11,6 +11,11 @@ const validationSchema = z.object({
 })
 
 export const loginAction = async (prevState,formData) => {
+
+    const cookie = cookies().get('loginToken')
+    console.log(cookie);
+    
+
     const phone = formData.get("phone")
     const password = formData.get("password")
     const remember = formData.get("remember") || 0
