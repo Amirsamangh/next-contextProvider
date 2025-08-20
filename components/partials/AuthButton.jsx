@@ -1,8 +1,8 @@
 // import axios from "axios"
 import { jwtDecode } from "jwt-decode"
 // import GoogleLoginButton from "./GoogleLoginButton"
-import { signIn, signOut, useSession } from 'next-auth/react'
-import GithubLoginButton from './GithubLoginButton';
+// import { signIn, signOut, useSession } from 'next-auth/react'
+// import GithubLoginButton from './GithubLoginButton';
 import { GoogleLogin } from "@react-oauth/google";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
@@ -53,23 +53,23 @@ import { useRouter } from "next/navigation";
 
 const AuthButton = () => {
     const router = useRouter()
-
-    const successLogin = credentialResponse => { 
-        const token = 'sdfbdsamfdioewu'
-        const cookieSotre = new Cookies(null, {path:'/'})
-        cookieSotre.set('loginToken', token)
-        router.push('/usersPanel')
+    const successLogin = credentialResponse => {
+        // Post auth data to server side
+        // get Token...
+        const token = "asdfasfsdfgdsfgdsf..dslfgjkdsjfg"
+        const cookieStore = new Cookies(null, { path: "/" })
+        cookieStore.set("loginToken", token)
+        router.push("/userpanel")
         const userInfo = jwtDecode(credentialResponse.credential)
-        console.log(userInfo)
-     }
-    const cathLogin = () => { console.log('Login Failed') }
+        console.log(userInfo);
+    }
+    const catchLogin = () => {
+        console.log('Login Failed');
+    }
 
     return (
-        <GoogleLogin
-            onSuccess={successLogin}
-            onError={cathLogin}
-        />
-    )
-}
+        <GoogleLogin onSuccess={successLogin} onError={catchLogin} />
+    );
+};
 
 export default AuthButton;

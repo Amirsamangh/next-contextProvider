@@ -12,9 +12,8 @@ const validationSchema = z.object({
 
 export const loginAction = async (prevState,formData) => {
 
-    const cookie = cookies().get('loginToken')
+    const cookie = cookies().get("loginToken")
     console.log(cookie);
-    
 
     const phone = formData.get("phone")
     const password = formData.get("password")
@@ -41,4 +40,21 @@ export const loginAction = async (prevState,formData) => {
     }else{
         return {error:"Unauthorized", success: false}
     }
+}
+
+export const isLoggedIn = async ()=>{
+    const token = cookies().get("loginToken")?.value
+
+    if (!token) return false
+
+    const res = await fetch("https://ecomadminapi.azhadev.ir/api/auth/user", {
+            method: "GET",
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }) 
+
+    if (res.status !== 200)  return false
+
+    return true
 }
