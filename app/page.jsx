@@ -7,9 +7,9 @@ const HomePage = () => {
     const router = useRouter()
     return (
         <div className='flex flex-col justify-center items-center h-full'>
-            <TbHomeCheck className='size-20'/>
+            <TbHomeCheck className='size-20' />
             <h1 className='my-5'>صفحه اصلی</h1>
-            <CustomButton className='bg-green-400 w-64 cursor-pointer' onClick={()=>router.push("/login")}>صفحه ورود</CustomButton>
+            <CustomButton className='bg-green-400 w-64 cursor-pointer' onClick={() => router.push("/login")}>صفحه ورود</CustomButton>
         </div>
     );
 }
